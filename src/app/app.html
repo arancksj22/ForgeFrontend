@@ -129,147 +129,54 @@
 
       <!-- Architecture Flow Diagram -->
       <div class="architecture-flow">
-        <div class="flow-container">
-          <!-- Row 1: User -> API -> S3 -->
-          <div class="flow-row">
-            <div class="flow-node">
-              <div class="tech-card">
-                <svg class="tech-icon" viewBox="0 0 24 24" fill="none">
-                  <rect x="2" y="3" width="20" height="14" rx="2" stroke="currentColor" stroke-width="2"/>
-                  <path d="M8 21h8M12 17v4" stroke="currentColor" stroke-width="2"/>
-                </svg>
-                <div class="tech-label">
-                  <strong>User Device</strong>
-                  <span>Browser</span>
-                </div>
-              </div>
-            </div>
-            <div class="flow-arrow horizontal">
-              <svg viewBox="0 0 24 24" fill="none">
-                <path d="M5 12h14m0 0l-4-4m4 4l-4 4" stroke="currentColor" stroke-width="2" stroke-linecap="round"/>
-              </svg>
-              <span>Upload</span>
+        <div class="tech-grid">
+          <!-- Row 1 -->
+          <div class="tech-card">
+            <img src="Angular_full_color_logo.svg.png" alt="Angular" class="tech-logo">
+            <div class="tech-label">
+              <strong>Angular Frontend</strong>
+              <span>User Interface</span>
             </div>
           </div>
 
-          <div class="flow-row">
-            <div class="flow-node">
-              <div class="tech-card">
-                <img src="icons8-spring-boot-96.png" alt="Spring Boot" class="tech-logo">
-                <div class="tech-label">
-                  <strong>Forge API</strong>
-                  <span>Spring Boot</span>
-                </div>
-              </div>
-            </div>
-            <div class="flow-arrow horizontal">
-              <svg viewBox="0 0 24 24" fill="none">
-                <path d="M5 12h14m0 0l-4-4m4 4l-4 4" stroke="currentColor" stroke-width="2" stroke-linecap="round"/>
-              </svg>
-              <span>Store</span>
+          <div class="tech-card">
+            <img src="icons8-spring-boot-96.png" alt="Spring Boot" class="tech-logo">
+            <div class="tech-label">
+              <strong>Build Worker</strong>
+              <span>Spring Boot</span>
             </div>
           </div>
 
-          <div class="flow-node">
-            <div class="tech-card">
-              <img src="Amazon-S3-Logo.png" alt="AWS S3" class="tech-logo">
-              <div class="tech-label">
-                <strong>AWS S3</strong>
-                <span>Storage</span>
-              </div>
+          <div class="tech-card">
+            <img src="Amazon-S3-Logo.png" alt="AWS S3" class="tech-logo">
+            <div class="tech-label">
+              <strong>AWS S3</strong>
+              <span>Storage</span>
             </div>
           </div>
 
-          <!-- Row 2: RabbitMQ -> Worker -> Containers -->
-          <div class="flow-node">
-            <div class="tech-card">
-              <img src="RabbitMq logo.svg" alt="RabbitMQ" class="tech-logo">
-              <div class="tech-label">
-                <strong>RabbitMQ</strong>
-                <span>Message Queue</span>
-              </div>
-            </div>
-            <div class="flow-arrow">
-              <svg viewBox="0 0 24 24" fill="none">
-                <path d="M12 5v14m0 0l-4-4m4 4l4-4" stroke="currentColor" stroke-width="2" stroke-linecap="round"/>
-              </svg>
-              <span>Queue Job</span>
+          <!-- Row 2 -->
+          <div class="tech-card">
+            <img src="RabbitMq logo.svg" alt="RabbitMQ" class="tech-logo">
+            <div class="tech-label">
+              <strong>RabbitMQ</strong>
+              <span>Message Queue</span>
             </div>
           </div>
 
-          <div class="flow-row">
-            <div class="flow-node">
-              <div class="tech-card">
-                <img src="icons8-spring-boot-96.png" alt="Spring Boot" class="tech-logo">
-                <div class="tech-label">
-                  <strong>Build Worker</strong>
-                  <span>Spring Boot</span>
-                </div>
-              </div>
-            </div>
-            <div class="flow-arrow horizontal">
-              <svg viewBox="0 0 24 24" fill="none">
-                <path d="M5 12h14m0 0l-4-4m4 4l-4 4" stroke="currentColor" stroke-width="2" stroke-linecap="round"/>
-              </svg>
-              <span>Control</span>
+          <div class="tech-card">
+            <img src="Docker-svgrepo-com.svg" alt="Docker" class="tech-logo">
+            <div class="tech-label">
+              <strong>Testcontainers</strong>
+              <span>Docker Mgmt</span>
             </div>
           </div>
 
-          <div class="flow-node">
-            <div class="tech-card">
-              <img src="Docker-svgrepo-com.svg" alt="Docker" class="tech-logo">
-              <div class="tech-label">
-                <strong>Testcontainers</strong>
-                <span>Docker Mgmt</span>
-              </div>
-            </div>
-          </div>
-
-          <!-- Row 3: Supabase -> API -> User -->
-          <div class="flow-node">
-            <div class="tech-card">
-              <img src="Supabase logo.PNG" alt="Supabase" class="tech-logo">
-              <div class="tech-label">
-                <strong>Supabase</strong>
-                <span>PostgreSQL</span>
-              </div>
-            </div>
-            <div class="flow-arrow">
-              <svg viewBox="0 0 24 24" fill="none">
-                <path d="M12 19V5m0 0l-4 4m4-4l4 4" stroke="currentColor" stroke-width="2" stroke-linecap="round"/>
-              </svg>
-              <span>Store Results</span>
-            </div>
-          </div>
-
-          <div class="flow-row">
-            <div class="flow-node">
-              <div class="tech-card">
-                <img src="aws-ec2.svg" alt="AWS EC2" class="tech-logo">
-                <div class="tech-label">
-                  <strong>Amazon EC2</strong>
-                  <span>Compute Server</span>
-                </div>
-              </div>
-            </div>
-            <div class="flow-arrow horizontal">
-              <svg viewBox="0 0 24 24" fill="none">
-                <path d="M5 12h14m0 0l-4-4m4 4l-4 4" stroke="currentColor" stroke-width="2" stroke-linecap="round"/>
-              </svg>
-              <span>Respond</span>
-            </div>
-          </div>
-
-          <div class="flow-node">
-            <div class="tech-card">
-              <svg class="tech-icon" viewBox="0 0 24 24" fill="none">
-                <rect x="2" y="3" width="20" height="14" rx="2" stroke="currentColor" stroke-width="2"/>
-                <path d="M8 21h8M12 17v4" stroke="currentColor" stroke-width="2"/>
-              </svg>
-              <div class="tech-label">
-                <strong>User Device</strong>
-                <span>Browser</span>
-              </div>
+          <div class="tech-card">
+            <img src="Supabase logo.PNG" alt="Supabase" class="tech-logo">
+            <div class="tech-label">
+              <strong>Supabase</strong>
+              <span>PostgreSQL</span>
             </div>
           </div>
         </div>
