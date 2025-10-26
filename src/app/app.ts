@@ -19,6 +19,7 @@ export class App {
   protected readonly selectedFile = signal<File | null>(null);
   protected readonly buildType = signal<string>('maven');
   protected readonly isUploading = signal<boolean>(false);
+  protected readonly repoUrl = signal<string>('');
   protected readonly builds = signal<BuildStatus[]>([
     { id: 'build-001', status: 'success', progress: 100, timestamp: new Date(Date.now() - 3600000) },
     { id: 'build-002', status: 'building', progress: 67, timestamp: new Date(Date.now() - 300000) },

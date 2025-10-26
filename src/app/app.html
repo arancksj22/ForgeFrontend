@@ -118,6 +118,28 @@
           </button>
         }
       </div>
+
+      <!-- Repo Link Card -->
+      <div class="repo-card">
+        <div class="repo-header">
+          <svg class="repo-icon" viewBox="0 0 24 24" fill="none">
+            <path d="M9 19c-5 1.5-5-2.5-7-3m14 6v-3.87a3.37 3.37 0 0 0-.94-2.61c3.14-.35 6.44-1.54 6.44-7A5.44 5.44 0 0 0 20 4.77 5.07 5.07 0 0 0 19.91 1S18.73.65 16 2.48a13.38 13.38 0 0 0-7 0C6.27.65 5.09 1 5.09 1A5.07 5.07 0 0 0 5 4.77a5.44 5.44 0 0 0-1.5 3.78c0 5.42 3.3 6.61 6.44 7A3.37 3.37 0 0 0 9 18.13V22" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+          </svg>
+          <h3>Or use a Git Repository</h3>
+        </div>
+        <div class="repo-input-group">
+          <input 
+            type="text" 
+            class="repo-input" 
+            placeholder="https://github.com/username/repository"
+            [(ngModel)]="repoUrl">
+          <button class="btn-repo" [disabled]="!repoUrl()">
+            <svg viewBox="0 0 24 24" fill="none">
+              <path d="M5 12h14M12 5l7 7-7 7" stroke="currentColor" stroke-width="2" stroke-linecap="round"/>
+            </svg>
+          </button>
+        </div>
+      </div>
     </section>
 
     <!-- Build Queue Section -->
@@ -239,10 +261,37 @@
     </section>
   </main>
 
+  <!-- Build Output Section (Full Width) -->
+  <section class="build-output-section">
+    <div class="output-header">
+      <div class="output-title">
+        <svg class="output-icon" viewBox="0 0 24 24" fill="none">
+          <rect x="2" y="4" width="20" height="16" rx="2" stroke="currentColor" stroke-width="2"/>
+          <path d="M7 10l3 3-3 3M12 16h5" stroke="currentColor" stroke-width="2" stroke-linecap="round"/>
+        </svg>
+        <h3>Build Output</h3>
+        <span class="output-live-badge">
+          <span class="live-dot"></span>
+          LIVE
+        </span>
+      </div>
+      <button class="btn-clear">
+        <svg viewBox="0 0 24 24" fill="none">
+          <path d="M3 6h18M19 6v14a2 2 0 0 1-2 2H7a2 2 0 0 1-2-2V6M8 6V4a2 2 0 0 1 2-2h4a2 2 0 0 1 2 2v2" 
+                stroke="currentColor" stroke-width="2" stroke-linecap="round"/>
+        </svg>
+        Clear
+      </button>
+    </div>
+    <div class="output-console">
+      <!-- Build output will be populated from backend -->
+    </div>
+  </section>
+
   <!-- Footer -->
   <footer class="forge-footer">
     <div class="footer-content">
-      <p>Powered by Spring Boot • Apache Kafka • Supabase • AWS S3</p>
+      <p>Powered by Spring Boot • RabbitMQ • Supabase • AWS S3</p>
       <p class="footer-tagline">Reproducible builds. Zero configuration. Maximum efficiency.</p>
     </div>
   </footer>
