@@ -1,0 +1,53 @@
+<div class="builds-list">
+  <div class="build-item" [attr.data-status]="builds()[0].status">
+    <div class="build-header">
+      <div class="build-id">
+        <svg class="build-icon" viewBox="0 0 24 24" fill="none">
+          <rect x="3" y="3" width="18" height="18" rx="2" stroke="currentColor" stroke-width="2"/>
+          <path d="M3 9h18M9 3v18" stroke="currentColor" stroke-width="2"/>
+        </svg>
+        <span class="build-code">{{ builds()[0].id }}</span>
+      </div>
+      <span class="build-status" [style.color]="getStatusColor(builds()[0].status)">
+        {{ builds()[0].status.toUpperCase() }}
+      </span>
+    </div>
+
+    @if (builds()[0].status === 'building') {
+      <div class="progress-bar">
+        <div class="progress-fill" [style.width.%]="builds()[0].progress">
+          <div class="progress-shine"></div>
+        </div>
+        <span class="progress-text">{{ builds()[0].progress }}%</span>
+      </div>
+    }
+
+    <div class="build-meta">
+      <span class="build-time">
+        <svg viewBox="0 0 24 24" fill="none">
+          <circle cx="12" cy="12" r="10" stroke="currentColor" stroke-width="2"/>
+          <path d="M12 6v6l4 2" stroke="currentColor" stroke-width="2"/>
+        </svg>
+        {{ builds()[0].timestamp.toLocaleTimeString() }}
+      </span>
+      @if (builds()[0].status === 'success') {
+        <button class="btn-link">
+          <svg viewBox="0 0 24 24" fill="none">
+            <path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4M7 10l5 5 5-5M12 15V3" 
+                  stroke="currentColor" stroke-width="2" stroke-linecap="round"/>
+          </svg>
+          Download Artifacts
+        </button>
+      }
+      <button class="btn-link">
+        <svg viewBox="0 0 24 24" fill="none">
+          <path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z" 
+                stroke="currentColor" stroke-width="2"/>
+          <path d="M14 2v6h6M16 13H8M16 17H8M10 9H8" 
+                stroke="currentColor" stroke-width="2"/>
+        </svg>
+        View Logs
+      </button>
+    </div>
+  </div>
+</div>

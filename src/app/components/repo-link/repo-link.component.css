@@ -1,0 +1,104 @@
+/* ===== REPO CARD ===== */
+.repo-card {
+  background: var(--forge-bg-secondary);
+  border: 1px solid var(--forge-border);
+  border-radius: 12px;
+  padding: 2rem;
+  transition: all 0.3s cubic-bezier(0.16, 1, 0.3, 1);
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+}
+
+.repo-card:hover {
+  border-color: var(--forge-border-bright);
+}
+
+.repo-header {
+  display: flex;
+  align-items: center;
+  gap: 0.75rem;
+  margin-bottom: 1.25rem;
+}
+
+.repo-icon {
+  width: 24px;
+  height: 24px;
+  color: var(--forge-accent);
+  flex-shrink: 0;
+}
+
+.repo-header h3 {
+  margin: 0;
+  font-size: 1rem;
+  font-weight: 600;
+  color: var(--forge-text-primary);
+}
+
+.repo-input-group {
+  display: flex;
+  gap: 0.75rem;
+  align-items: stretch;
+}
+
+.repo-input {
+  flex: 1;
+  background: var(--forge-bg-elevated);
+  border: 1px solid var(--forge-border);
+  border-radius: 8px;
+  padding: 0.875rem 1rem;
+  color: var(--forge-text-primary);
+  font-size: 0.9rem;
+  font-family: 'JetBrains Mono', monospace;
+  transition: all 0.2s;
+}
+
+.repo-input:focus {
+  outline: none;
+  border-color: var(--forge-accent);
+  background: rgba(0, 217, 255, 0.05);
+}
+
+.repo-input::placeholder {
+  color: var(--forge-text-tertiary);
+}
+
+.btn-repo {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 0.875rem 1.5rem;
+  background: linear-gradient(135deg, var(--forge-accent) 0%, var(--forge-violet) 100%);
+  border: none;
+  border-radius: 8px;
+  color: white;
+  cursor: pointer;
+  transition: all 0.3s cubic-bezier(0.16, 1, 0.3, 1);
+  position: relative;
+  overflow: hidden;
+}
+
+.btn-repo::before {
+  content: '';
+  position: absolute;
+  inset: 0;
+  background: linear-gradient(135deg, var(--forge-accent-bright) 0%, var(--forge-purple) 100%);
+  opacity: 0;
+  transition: opacity 0.3s;
+}
+
+.btn-repo:hover::before {
+  opacity: 1;
+}
+
+.btn-repo:disabled {
+  opacity: 0.4;
+  cursor: not-allowed;
+}
+
+.btn-repo svg {
+  width: 20px;
+  height: 20px;
+  position: relative;
+  z-index: 1;
+}

@@ -1,0 +1,292 @@
+/* ===== UPLOAD CARD ===== */
+.upload-card {
+  background: var(--forge-bg-secondary);
+  border: 1px solid var(--forge-border);
+  border-radius: 12px;
+  padding: 2.5rem;
+  position: relative;
+  overflow: hidden;
+  transition: all 0.3s cubic-bezier(0.16, 1, 0.3, 1);
+}
+
+.upload-card::before {
+  content: '';
+  position: absolute;
+  inset: 0;
+  border-radius: 12px;
+  padding: 1px;
+  background: linear-gradient(135deg, var(--forge-accent) 0%, var(--forge-violet) 100%);
+  -webkit-mask: linear-gradient(#fff 0 0) content-box, linear-gradient(#fff 0 0);
+  -webkit-mask-composite: xor;
+  mask: linear-gradient(#fff 0 0) content-box, linear-gradient(#fff 0 0);
+  mask-composite: exclude;
+  opacity: 0;
+  transition: opacity 0.3s;
+}
+
+.upload-card:hover::before {
+  opacity: 0.5;
+}
+
+.upload-area {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  padding: 3rem 2rem;
+  border: 2px dashed var(--forge-border);
+  border-radius: 8px;
+  cursor: pointer;
+  transition: all 0.3s;
+  position: relative;
+}
+
+.upload-area:hover {
+  border-color: var(--forge-border-bright);
+  background: rgba(0, 217, 255, 0.03);
+}
+
+.upload-icon {
+  width: 64px;
+  height: 64px;
+  color: var(--forge-accent);
+  margin-bottom: 1.5rem;
+  animation: float 3s ease-in-out infinite;
+}
+
+@keyframes float {
+  0%, 100% { transform: translateY(0px); }
+  50% { transform: translateY(-10px); }
+}
+
+.upload-area h3 {
+  margin: 0 0 0.5rem 0;
+  font-size: 1.25rem;
+  color: var(--forge-text-primary);
+  font-weight: 600;
+}
+
+.upload-area p {
+  margin: 0 0 1.5rem 0;
+  font-size: 0.875rem;
+  color: var(--forge-text-secondary);
+}
+
+.file-input {
+  position: absolute;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+  opacity: 0;
+  cursor: pointer;
+}
+
+.supported-formats {
+  display: flex;
+  gap: 0.75rem;
+  flex-wrap: wrap;
+  justify-content: center;
+}
+
+.format-badge {
+  padding: 0.375rem 0.875rem;
+  background: var(--forge-bg-elevated);
+  border: 1px solid var(--forge-border);
+  border-radius: 6px;
+  font-size: 0.75rem;
+  color: var(--forge-text-secondary);
+  font-weight: 600;
+  text-transform: uppercase;
+  letter-spacing: 0.05em;
+}
+
+/* ===== FILE SELECTED STATE ===== */
+.file-selected {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 1.5rem;
+  background: var(--forge-bg-elevated);
+  border: 1px solid var(--forge-border-bright);
+  border-radius: 8px;
+  margin-bottom: 2rem;
+  animation: slideIn 0.3s cubic-bezier(0.16, 1, 0.3, 1);
+}
+
+@keyframes slideIn {
+  from {
+    opacity: 0;
+    transform: translateX(-20px);
+  }
+  to {
+    opacity: 1;
+    transform: translateX(0);
+  }
+}
+
+.file-info {
+  display: flex;
+  align-items: center;
+  gap: 1rem;
+}
+
+.file-icon {
+  width: 40px;
+  height: 40px;
+  color: var(--forge-accent);
+}
+
+.file-details h4 {
+  margin: 0 0 0.25rem 0;
+  font-size: 1rem;
+  color: var(--forge-text-primary);
+  font-weight: 600;
+}
+
+.file-details p {
+  margin: 0;
+  font-size: 0.875rem;
+  color: var(--forge-text-secondary);
+}
+
+/* ===== BUILD CONFIG ===== */
+.build-config {
+  margin-bottom: 2rem;
+}
+
+.config-label {
+  display: block;
+  margin-bottom: 1rem;
+  font-size: 0.875rem;
+  color: var(--forge-text-secondary);
+  font-weight: 600;
+  text-transform: uppercase;
+  letter-spacing: 0.05em;
+}
+
+.radio-group {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 0.75rem;
+}
+
+.radio-item {
+  position: relative;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 0.875rem;
+  background: var(--forge-bg-elevated);
+  border: 1px solid var(--forge-border);
+  border-radius: 6px;
+  cursor: pointer;
+  transition: all 0.2s;
+  font-weight: 600;
+}
+
+.radio-item:hover {
+  border-color: var(--forge-border-bright);
+  background: rgba(0, 217, 255, 0.05);
+}
+
+.radio-item input[type="radio"] {
+  position: absolute;
+  opacity: 0;
+}
+
+.radio-item input[type="radio"]:checked + span {
+  color: var(--forge-accent);
+}
+
+.radio-item:has(input[type="radio"]:checked) {
+  border-color: var(--forge-accent);
+  background: rgba(0, 217, 255, 0.1);
+}
+
+.btn-ghost {
+  padding: 0.5rem;
+  background: transparent;
+  border: 1px solid var(--forge-border);
+  border-radius: 6px;
+  color: var(--forge-text-secondary);
+  cursor: pointer;
+  transition: all 0.2s;
+}
+
+.btn-ghost:hover {
+  border-color: var(--forge-error);
+  color: var(--forge-error);
+  background: rgba(239, 68, 68, 0.1);
+}
+
+.btn-ghost svg {
+  width: 20px;
+  height: 20px;
+  display: block;
+}
+
+.btn-primary {
+  width: 100%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 0.75rem;
+  padding: 1rem 2rem;
+  background: linear-gradient(135deg, var(--forge-accent) 0%, var(--forge-violet) 100%);
+  border: none;
+  border-radius: 8px;
+  color: white;
+  font-size: 1rem;
+  font-weight: 700;
+  text-transform: uppercase;
+  letter-spacing: 0.05em;
+  cursor: pointer;
+  transition: all 0.3s cubic-bezier(0.16, 1, 0.3, 1);
+  position: relative;
+  overflow: hidden;
+}
+
+.btn-primary::before {
+  content: '';
+  position: absolute;
+  inset: 0;
+  background: linear-gradient(135deg, var(--forge-accent-bright) 0%, var(--forge-purple) 100%);
+  opacity: 0;
+  transition: opacity 0.3s;
+}
+
+.btn-primary:hover::before {
+  opacity: 1;
+}
+
+.btn-primary:disabled {
+  opacity: 0.6;
+  cursor: not-allowed;
+}
+
+.btn-primary svg {
+  width: 20px;
+  height: 20px;
+  position: relative;
+  z-index: 1;
+}
+
+.btn-primary span {
+  position: relative;
+  z-index: 1;
+}
+
+.spinner {
+  width: 20px;
+  height: 20px;
+  border: 2px solid rgba(255, 255, 255, 0.3);
+  border-top-color: white;
+  border-radius: 50%;
+  animation: spin 0.8s linear infinite;
+  position: relative;
+  z-index: 1;
+}
+
+@keyframes spin {
+  to { transform: rotate(360deg); }
+}
