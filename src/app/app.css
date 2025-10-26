@@ -48,39 +48,13 @@
     linear-gradient(var(--forge-border) 1px, transparent 1px),
     linear-gradient(90deg, var(--forge-border) 1px, transparent 1px);
   background-size: var(--grid-size) var(--grid-size);
-  opacity: 0.4;
+  opacity: 0.3;
   pointer-events: none;
   z-index: 0;
-  animation: gridPulse 8s ease-in-out infinite;
 }
 
 .bg-gradient {
-  position: fixed;
-  inset: 0;
-  background: 
-    radial-gradient(circle at 20% 20%, rgba(99, 102, 241, 0.15) 0%, transparent 50%),
-    radial-gradient(circle at 80% 80%, rgba(0, 217, 255, 0.1) 0%, transparent 50%);
-  pointer-events: none;
-  z-index: 0;
-  animation: gradientShift 15s ease-in-out infinite;
-}
-
-@keyframes gridPulse {
-  0%, 100% { opacity: 0.4; }
-  50% { opacity: 0.2; }
-}
-
-@keyframes gradientShift {
-  0%, 100% { 
-    background: 
-      radial-gradient(circle at 20% 20%, rgba(99, 102, 241, 0.15) 0%, transparent 50%),
-      radial-gradient(circle at 80% 80%, rgba(0, 217, 255, 0.1) 0%, transparent 50%);
-  }
-  50% { 
-    background: 
-      radial-gradient(circle at 80% 20%, rgba(0, 217, 255, 0.15) 0%, transparent 50%),
-      radial-gradient(circle at 20% 80%, rgba(99, 102, 241, 0.1) 0%, transparent 50%);
-  }
+  display: none;
 }
 
 /* ===== HEADER ===== */
@@ -544,6 +518,142 @@
 }
 
 /* ===== BUILD QUEUE ===== */
+.architecture-flow {
+  background: var(--forge-bg-secondary);
+  border: 1px solid var(--forge-border);
+  border-radius: 12px;
+  padding: 2rem;
+  margin-bottom: 2rem;
+  overflow-x: auto;
+}
+
+.flow-container {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 2rem 3rem;
+  min-width: 600px;
+}
+
+.flow-row {
+  display: flex;
+  align-items: center;
+  gap: 1rem;
+}
+
+.flow-node {
+  display: flex;
+  align-items: center;
+  gap: 0.75rem;
+  animation: flowNodeEnter 0.5s cubic-bezier(0.16, 1, 0.3, 1) backwards;
+}
+
+.flow-node:nth-child(1) { animation-delay: 0.05s; }
+.flow-node:nth-child(2) { animation-delay: 0.1s; }
+.flow-node:nth-child(3) { animation-delay: 0.15s; }
+.flow-node:nth-child(4) { animation-delay: 0.2s; }
+.flow-node:nth-child(5) { animation-delay: 0.25s; }
+.flow-node:nth-child(6) { animation-delay: 0.3s; }
+.flow-node:nth-child(7) { animation-delay: 0.35s; }
+.flow-node:nth-child(8) { animation-delay: 0.4s; }
+.flow-node:nth-child(9) { animation-delay: 0.45s; }
+
+@keyframes flowNodeEnter {
+  from {
+    opacity: 0;
+    transform: scale(0.9);
+  }
+  to {
+    opacity: 1;
+    transform: scale(1);
+  }
+}
+
+.tech-card {
+  background: var(--forge-bg-elevated);
+  border: 1px solid var(--forge-border);
+  border-radius: 8px;
+  padding: 0.875rem 1.25rem;
+  display: flex;
+  align-items: center;
+  gap: 0.75rem;
+  transition: all 0.3s;
+  position: relative;
+  white-space: nowrap;
+}
+
+.tech-card:hover {
+  border-color: var(--forge-accent);
+  transform: translateY(-2px);
+  box-shadow: 0 4px 20px rgba(0, 217, 255, 0.15);
+}
+
+.tech-icon {
+  width: 28px;
+  height: 28px;
+  color: var(--forge-accent);
+  flex-shrink: 0;
+}
+
+.tech-label {
+  display: flex;
+  flex-direction: column;
+  gap: 0.2rem;
+}
+
+.tech-label strong {
+  font-size: 0.875rem;
+  color: var(--forge-text-primary);
+  font-weight: 600;
+  line-height: 1.2;
+}
+
+.tech-label span {
+  font-size: 0.7rem;
+  color: var(--forge-text-tertiary);
+  font-family: 'JetBrains Mono', monospace;
+  line-height: 1.2;
+}
+
+.flow-arrow {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 0.25rem;
+  color: var(--forge-text-tertiary);
+  font-size: 0.65rem;
+  font-weight: 600;
+  text-transform: uppercase;
+  letter-spacing: 0.05em;
+}
+
+.flow-arrow.horizontal {
+  flex-direction: row;
+  gap: 0.5rem;
+}
+
+.flow-arrow svg {
+  width: 20px;
+  height: 20px;
+  color: var(--forge-accent);
+  animation: arrowPulse 2s ease-in-out infinite;
+  flex-shrink: 0;
+}
+
+@keyframes arrowPulse {
+  0%, 100% { opacity: 0.5; }
+  50% { opacity: 1; }
+}
+
+.flow-arrow span {
+  max-width: 80px;
+  text-align: center;
+  line-height: 1.3;
+}
+
+.flow-arrow.horizontal span {
+  max-width: 100px;
+}
+
 .builds-list {
   display: flex;
   flex-direction: column;

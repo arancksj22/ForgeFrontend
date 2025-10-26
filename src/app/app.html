@@ -24,6 +24,12 @@
 
   <!-- Main Content -->
   <main class="forge-main">
+    <!-- Hero Text -->
+    <div class="hero-statement">
+      <h2>No Docker. No Setup. No "Works on My Machine."</h2>
+      <p>Upload your project zip. We handle the rest. Consistent builds, every time, anywhere.</p>
+    </div>
+
     <!-- Upload Section -->
     <section class="upload-section">
       <div class="section-header">
@@ -51,7 +57,6 @@
               <span class="format-badge">Maven</span>
               <span class="format-badge">npm</span>
               <span class="format-badge">pip</span>
-              <span class="format-badge">gradle</span>
             </div>
           </div>
         } @else {
@@ -124,63 +129,232 @@
     <section class="queue-section">
       <div class="section-header">
         <h2>Build Pipeline</h2>
-        <p>Real-time build status and artifacts</p>
+        <p>Architecture flow and real-time status</p>
       </div>
 
-      <div class="builds-list">
-        @for (build of builds(); track build.id) {
-          <div class="build-item" [attr.data-status]="build.status">
-            <div class="build-header">
-              <div class="build-id">
-                <svg class="build-icon" viewBox="0 0 24 24" fill="none">
-                  <rect x="3" y="3" width="18" height="18" rx="2" stroke="currentColor" stroke-width="2"/>
-                  <path d="M3 9h18M9 3v18" stroke="currentColor" stroke-width="2"/>
+      <!-- Architecture Flow Diagram -->
+      <div class="architecture-flow">
+        <div class="flow-container">
+          <!-- Row 1: User -> API -> S3 -->
+          <div class="flow-row">
+            <div class="flow-node">
+              <div class="tech-card">
+                <svg class="tech-icon" viewBox="0 0 24 24" fill="none">
+                  <rect x="2" y="3" width="20" height="14" rx="2" stroke="currentColor" stroke-width="2"/>
+                  <path d="M8 21h8M12 17v4" stroke="currentColor" stroke-width="2"/>
                 </svg>
-                <span class="build-code">{{ build.id }}</span>
-              </div>
-              <span class="build-status" [style.color]="getStatusColor(build.status)">
-                {{ build.status.toUpperCase() }}
-              </span>
-            </div>
-
-            @if (build.status === 'building') {
-              <div class="progress-bar">
-                <div class="progress-fill" [style.width.%]="build.progress">
-                  <div class="progress-shine"></div>
+                <div class="tech-label">
+                  <strong>User Device</strong>
+                  <span>Browser</span>
                 </div>
-                <span class="progress-text">{{ build.progress }}%</span>
               </div>
-            }
-
-            <div class="build-meta">
-              <span class="build-time">
-                <svg viewBox="0 0 24 24" fill="none">
-                  <circle cx="12" cy="12" r="10" stroke="currentColor" stroke-width="2"/>
-                  <path d="M12 6v6l4 2" stroke="currentColor" stroke-width="2"/>
-                </svg>
-                {{ build.timestamp.toLocaleTimeString() }}
-              </span>
-              @if (build.status === 'success') {
-                <button class="btn-link">
-                  <svg viewBox="0 0 24 24" fill="none">
-                    <path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4M7 10l5 5 5-5M12 15V3" 
-                          stroke="currentColor" stroke-width="2" stroke-linecap="round"/>
-                  </svg>
-                  Download Artifacts
-                </button>
-              }
-              <button class="btn-link">
-                <svg viewBox="0 0 24 24" fill="none">
-                  <path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z" 
-                        stroke="currentColor" stroke-width="2"/>
-                  <path d="M14 2v6h6M16 13H8M16 17H8M10 9H8" 
-                        stroke="currentColor" stroke-width="2"/>
-                </svg>
-                View Logs
-              </button>
+            </div>
+            <div class="flow-arrow horizontal">
+              <svg viewBox="0 0 24 24" fill="none">
+                <path d="M5 12h14m0 0l-4-4m4 4l-4 4" stroke="currentColor" stroke-width="2" stroke-linecap="round"/>
+              </svg>
+              <span>Upload</span>
             </div>
           </div>
-        }
+
+          <div class="flow-row">
+            <div class="flow-node">
+              <div class="tech-card">
+                <svg class="tech-icon" viewBox="0 0 24 24" fill="none">
+                  <path d="M12 2L2 7l10 5 10-5-10-5z" stroke="currentColor" stroke-width="2" stroke-linejoin="round"/>
+                  <path d="M2 17l10 5 10-5M2 12l10 5 10-5" stroke="currentColor" stroke-width="2" stroke-linejoin="round"/>
+                </svg>
+                <div class="tech-label">
+                  <strong>Forge API</strong>
+                  <span>Spring Boot</span>
+                </div>
+              </div>
+            </div>
+            <div class="flow-arrow horizontal">
+              <svg viewBox="0 0 24 24" fill="none">
+                <path d="M5 12h14m0 0l-4-4m4 4l-4 4" stroke="currentColor" stroke-width="2" stroke-linecap="round"/>
+              </svg>
+              <span>Store</span>
+            </div>
+          </div>
+
+          <div class="flow-node">
+            <div class="tech-card">
+              <svg class="tech-icon" viewBox="0 0 24 24" fill="none">
+                <path d="M21 16V8a2 2 0 0 0-1-1.73l-7-4a2 2 0 0 0-2 0l-7 4A2 2 0 0 0 3 8v8a2 2 0 0 0 1 1.73l7 4a2 2 0 0 0 2 0l7-4A2 2 0 0 0 21 16z" stroke="currentColor" stroke-width="2"/>
+              </svg>
+              <div class="tech-label">
+                <strong>AWS S3</strong>
+                <span>Storage</span>
+              </div>
+            </div>
+          </div>
+
+          <!-- Row 2: Kafka -> Worker -> Containers -->
+          <div class="flow-node">
+            <div class="tech-card">
+              <svg class="tech-icon" viewBox="0 0 24 24" fill="none">
+                <circle cx="12" cy="12" r="3" stroke="currentColor" stroke-width="2"/>
+                <path d="M12 1v4m0 14v4M23 12h-4M5 12H1" stroke="currentColor" stroke-width="2"/>
+                <path d="M18 6l-3 3m0 6l3 3M6 6l3 3m0 6l-3 3" stroke="currentColor" stroke-width="2"/>
+              </svg>
+              <div class="tech-label">
+                <strong>Kafka</strong>
+                <span>Queue</span>
+              </div>
+            </div>
+            <div class="flow-arrow">
+              <svg viewBox="0 0 24 24" fill="none">
+                <path d="M12 5v14m0 0l-4-4m4 4l4-4" stroke="currentColor" stroke-width="2" stroke-linecap="round"/>
+              </svg>
+              <span>Queue Job</span>
+            </div>
+          </div>
+
+          <div class="flow-row">
+            <div class="flow-node">
+              <div class="tech-card">
+                <svg class="tech-icon" viewBox="0 0 24 24" fill="none">
+                  <path d="M14.7 6.3a1 1 0 0 0 0 1.4l1.6 1.6a1 1 0 0 0 1.4 0l3.77-3.77a6 6 0 0 1-7.94 7.94l-6.91 6.91a2.12 2.12 0 0 1-3-3l6.91-6.91a6 6 0 0 1 7.94-7.94l-3.76 3.76z" stroke="currentColor" stroke-width="2"/>
+                </svg>
+                <div class="tech-label">
+                  <strong>Build Worker</strong>
+                  <span>Spring Boot</span>
+                </div>
+              </div>
+            </div>
+            <div class="flow-arrow horizontal">
+              <svg viewBox="0 0 24 24" fill="none">
+                <path d="M5 12h14m0 0l-4-4m4 4l-4 4" stroke="currentColor" stroke-width="2" stroke-linecap="round"/>
+              </svg>
+              <span>Control</span>
+            </div>
+          </div>
+
+          <div class="flow-node">
+            <div class="tech-card">
+              <svg class="tech-icon" viewBox="0 0 24 24" fill="none">
+                <rect x="4" y="4" width="6" height="6" rx="1" stroke="currentColor" stroke-width="2"/>
+                <rect x="4" y="14" width="6" height="6" rx="1" stroke="currentColor" stroke-width="2"/>
+                <rect x="14" y="4" width="6" height="6" rx="1" stroke="currentColor" stroke-width="2"/>
+                <rect x="14" y="14" width="6" height="6" rx="1" stroke="currentColor" stroke-width="2"/>
+              </svg>
+              <div class="tech-label">
+                <strong>Testcontainers</strong>
+                <span>Docker Mgmt</span>
+              </div>
+            </div>
+          </div>
+
+          <!-- Row 3: Supabase -> API -> User -->
+          <div class="flow-node">
+            <div class="tech-card">
+              <svg class="tech-icon" viewBox="0 0 24 24" fill="none">
+                <path d="M4 6h16M4 12h16M4 18h16" stroke="currentColor" stroke-width="2" stroke-linecap="round"/>
+                <rect x="2" y="3" width="20" height="18" rx="2" stroke="currentColor" stroke-width="2"/>
+              </svg>
+              <div class="tech-label">
+                <strong>Supabase</strong>
+                <span>PostgreSQL</span>
+              </div>
+            </div>
+            <div class="flow-arrow">
+              <svg viewBox="0 0 24 24" fill="none">
+                <path d="M12 19V5m0 0l-4 4m4-4l4 4" stroke="currentColor" stroke-width="2" stroke-linecap="round"/>
+              </svg>
+              <span>Store Results</span>
+            </div>
+          </div>
+
+          <div class="flow-row">
+            <div class="flow-node">
+              <div class="tech-card">
+                <svg class="tech-icon" viewBox="0 0 24 24" fill="none">
+                  <path d="M12 2L2 7l10 5 10-5-10-5z" stroke="currentColor" stroke-width="2" stroke-linejoin="round"/>
+                  <path d="M2 17l10 5 10-5M2 12l10 5 10-5" stroke="currentColor" stroke-width="2" stroke-linejoin="round"/>
+                </svg>
+                <div class="tech-label">
+                  <strong>Forge API</strong>
+                  <span>Spring Boot</span>
+                </div>
+              </div>
+            </div>
+            <div class="flow-arrow horizontal">
+              <svg viewBox="0 0 24 24" fill="none">
+                <path d="M5 12h14m0 0l-4-4m4 4l-4 4" stroke="currentColor" stroke-width="2" stroke-linecap="round"/>
+              </svg>
+              <span>Respond</span>
+            </div>
+          </div>
+
+          <div class="flow-node">
+            <div class="tech-card">
+              <svg class="tech-icon" viewBox="0 0 24 24" fill="none">
+                <rect x="2" y="3" width="20" height="14" rx="2" stroke="currentColor" stroke-width="2"/>
+                <path d="M8 21h8M12 17v4" stroke="currentColor" stroke-width="2"/>
+              </svg>
+              <div class="tech-label">
+                <strong>User Device</strong>
+                <span>Browser</span>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- Single Build Status -->
+      <div class="builds-list">
+        <div class="build-item" [attr.data-status]="builds()[0].status">
+          <div class="build-header">
+            <div class="build-id">
+              <svg class="build-icon" viewBox="0 0 24 24" fill="none">
+                <rect x="3" y="3" width="18" height="18" rx="2" stroke="currentColor" stroke-width="2"/>
+                <path d="M3 9h18M9 3v18" stroke="currentColor" stroke-width="2"/>
+              </svg>
+              <span class="build-code">{{ builds()[0].id }}</span>
+            </div>
+            <span class="build-status" [style.color]="getStatusColor(builds()[0].status)">
+              {{ builds()[0].status.toUpperCase() }}
+            </span>
+          </div>
+
+          @if (builds()[0].status === 'building') {
+            <div class="progress-bar">
+              <div class="progress-fill" [style.width.%]="builds()[0].progress">
+                <div class="progress-shine"></div>
+              </div>
+              <span class="progress-text">{{ builds()[0].progress }}%</span>
+            </div>
+          }
+
+          <div class="build-meta">
+            <span class="build-time">
+              <svg viewBox="0 0 24 24" fill="none">
+                <circle cx="12" cy="12" r="10" stroke="currentColor" stroke-width="2"/>
+                <path d="M12 6v6l4 2" stroke="currentColor" stroke-width="2"/>
+              </svg>
+              {{ builds()[0].timestamp.toLocaleTimeString() }}
+            </span>
+            @if (builds()[0].status === 'success') {
+              <button class="btn-link">
+                <svg viewBox="0 0 24 24" fill="none">
+                  <path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4M7 10l5 5 5-5M12 15V3" 
+                        stroke="currentColor" stroke-width="2" stroke-linecap="round"/>
+                </svg>
+                Download Artifacts
+              </button>
+            }
+            <button class="btn-link">
+              <svg viewBox="0 0 24 24" fill="none">
+                <path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z" 
+                      stroke="currentColor" stroke-width="2"/>
+                <path d="M14 2v6h6M16 13H8M16 17H8M10 9H8" 
+                      stroke="currentColor" stroke-width="2"/>
+              </svg>
+              View Logs
+            </button>
+          </div>
+        </div>
       </div>
     </section>
   </main>
