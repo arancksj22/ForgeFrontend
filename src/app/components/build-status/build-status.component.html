@@ -13,33 +13,22 @@
       </span>
     </div>
 
-    @if (builds()[0].status === 'building') {
-      <div class="progress-bar">
-        <div class="progress-fill" [style.width.%]="builds()[0].progress">
-          <div class="progress-shine"></div>
-        </div>
-        <span class="progress-text">{{ builds()[0].progress }}%</span>
-      </div>
-    }
-
     <div class="build-meta">
       <span class="build-time">
         <svg viewBox="0 0 24 24" fill="none">
           <circle cx="12" cy="12" r="10" stroke="currentColor" stroke-width="2"/>
           <path d="M12 6v6l4 2" stroke="currentColor" stroke-width="2"/>
         </svg>
-        {{ builds()[0].timestamp.toLocaleTimeString() }}
+        {{ builds()[0].time }}
       </span>
-      @if (builds()[0].status === 'success') {
-        <button class="btn-link">
-          <svg viewBox="0 0 24 24" fill="none">
-            <path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4M7 10l5 5 5-5M12 15V3" 
-                  stroke="currentColor" stroke-width="2" stroke-linecap="round"/>
-          </svg>
-          Download Artifacts
-        </button>
-      }
-      <button class="btn-link">
+      <button class="btn-link btn-download" (click)="downloadArtifacts()">
+        <svg viewBox="0 0 24 24" fill="none">
+          <path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4M7 10l5 5 5-5M12 15V3" 
+                stroke="currentColor" stroke-width="2" stroke-linecap="round"/>
+        </svg>
+        Download Artifacts
+      </button>
+      <button class="btn-link btn-logs" (click)="toggleLogs()">
         <svg viewBox="0 0 24 24" fill="none">
           <path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z" 
                 stroke="currentColor" stroke-width="2"/>
@@ -47,7 +36,38 @@
                 stroke="currentColor" stroke-width="2"/>
         </svg>
         View Logs
+        <svg class="dropdown-icon" [class.rotated]="showLogs()" viewBox="0 0 24 24" fill="none">
+          <path d="M6 9l6 6 6-6" stroke="currentColor" stroke-width="2" stroke-linecap="round"/>
+        </svg>
       </button>
+    </div>
+
+    @if (showLogs()) {
+      <div class="logs-dropdown">
+        <div class="log-entry">
+          <div class="log-row">
+            <span class="log-label">Time:</span>
+            <span class="log-value">{{ builds()[0].time }}</span>
+          </div>
+          <div class="log-row">
+            <span class="log-label">Name:</span>
+            <span class="log-value">{{ builds()[0].name }}</span>
+          </div>
+          <div class="log-row">
+            <span class="log-label">Job ID:</span>
+            <span class="log-value">{{ builds()[0].jobId }}</span>
+          </div>
+          <div class="log-row">
+            <span class="log-label">Status:</span>
+            <span class="log-value status-badge" [style.color]="getStatusColor(builds()[0].status)">
+              {{ builds()[0].status }}
+            </span>
+          </div>
+        </div>
+      </div>
+    }
+  </div>
+</div>
     </div>
   </div>
 </div>

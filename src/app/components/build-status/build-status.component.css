@@ -160,3 +160,93 @@
   width: 16px;
   height: 16px;
 }
+
+.btn-download {
+  background: linear-gradient(135deg, var(--forge-accent) 0%, var(--forge-violet) 100%);
+  border: none;
+  color: white;
+  font-weight: 600;
+}
+
+.btn-download:hover {
+  background: linear-gradient(135deg, var(--forge-accent-bright) 0%, var(--forge-purple) 100%);
+  color: white;
+  transform: translateY(-1px);
+}
+
+.btn-logs {
+  position: relative;
+}
+
+.dropdown-icon {
+  width: 14px;
+  height: 14px;
+  transition: transform 0.3s;
+  margin-left: 0.25rem;
+}
+
+.dropdown-icon.rotated {
+  transform: rotate(180deg);
+}
+
+/* ===== LOGS DROPDOWN ===== */
+.logs-dropdown {
+  margin-top: 1rem;
+  padding: 1rem;
+  background: var(--forge-bg-elevated);
+  border: 1px solid var(--forge-border-bright);
+  border-radius: 8px;
+  animation: slideDown 0.3s cubic-bezier(0.16, 1, 0.3, 1);
+}
+
+@keyframes slideDown {
+  from {
+    opacity: 0;
+    transform: translateY(-10px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+.log-entry {
+  display: flex;
+  flex-direction: column;
+  gap: 0.75rem;
+}
+
+.log-row {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 0.5rem 0;
+  border-bottom: 1px solid var(--forge-border);
+}
+
+.log-row:last-child {
+  border-bottom: none;
+}
+
+.log-label {
+  font-size: 0.875rem;
+  color: var(--forge-text-secondary);
+  font-weight: 600;
+  text-transform: uppercase;
+  letter-spacing: 0.05em;
+}
+
+.log-value {
+  font-size: 0.875rem;
+  color: var(--forge-text-primary);
+  font-family: 'JetBrains Mono', monospace;
+}
+
+.status-badge {
+  text-transform: uppercase;
+  font-weight: 700;
+  padding: 0.25rem 0.625rem;
+  border-radius: 4px;
+  background: rgba(16, 185, 129, 0.15);
+  border: 1px solid currentColor;
+}

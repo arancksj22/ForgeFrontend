@@ -29,7 +29,6 @@
         </svg>
         <div class="file-details">
           <h4>{{ selectedFile()?.name }}</h4>
-          <p>{{ ((selectedFile()?.size ?? 0) / 1024 / 1024).toFixed(2) }} MB</p>
         </div>
       </div>
       <button class="btn-ghost" (click)="clearFile()">
@@ -60,7 +59,12 @@
                  (change)="buildType.set('pip')">
           <span>pip</span>
         </label>
-
+        <label class="radio-item">
+          <input type="radio" name="buildType" value="kotlin" 
+                 [checked]="buildType() === 'kotlin'"
+                 (change)="buildType.set('kotlin')">
+          <span>Kotlin</span>
+        </label>
       </div>
     </div>
 
